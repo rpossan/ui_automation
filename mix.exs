@@ -18,6 +18,8 @@ defmodule UiAutomation.Mixfile do
     [extra_applications: [:logger]]
   end
 
+  {:hound, "~> 1.0"}
+
   # Dependencies can be Hex packages:
   #
   #   {:my_dep, "~> 0.3.0"}
