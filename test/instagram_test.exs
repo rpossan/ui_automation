@@ -22,18 +22,16 @@ defmodule InstagramTest do
 	test "Validates system variables" do
 		assert user() != nil
 		assert password() != nil
-		
 	end
 
 
 	test "Should open Instagram web main page and user pager in multiple sessions" do
 		navigate_to(@url)
-		change_session_to :http
+		change_session_to :user_page
 		navigate_to("http://www.instagram.com/" <> user())
 		assert current_url() != @url
 		change_to_default_session()
 		assert current_url() == @url
-
 	end
 
 	test "Given an user and password I should log in on Instagram web" do
@@ -45,6 +43,5 @@ defmodule InstagramTest do
 		submit_element(username_input)
 		find_element(:class, "_etslc")
 	end
-
 
 end
