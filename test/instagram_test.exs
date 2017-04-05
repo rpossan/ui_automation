@@ -4,20 +4,47 @@ defmodule InstagramTest do
 	use Hound.Helpers
 
 	hound_session()
+	
+	@url "https://www.instagram.com/"
 
-	test "Should open Instagram web in multiple sessions" do
-		url = "https://www.instagram.com/"
-		navigate_to(url)
-
-		change_session_to :another
-
-		navigate_to(url)
-
-		assert url == current_url()
-
-		change_to_default_session()
-
-		assert url == current_url()
+	def user do
+		get_system("INSTAUSER")
 	end
+
+	def password do
+		get_system("INSTAPASS")
+	end
+
+	defp get_system(var) do
+		System.get_env(var)
+	end
+
+	test "Validates system variables" do
+		assert user() != nil
+		assert password() != nil
+		
+	end
+
+
+	test "Should open Instagram web main page and user pager in multiple sessions" do
+		navigate_to(@url)
+		change_session_to :http
+		navigate_to("http://www.instagram.com/" <> user())
+		assert current_url() != @url
+		change_to_default_session()
+		assert current_url() == @url
+
+	end
+
+	test "Given an user and password I should log in on Instagram web" do
+		
+		navigate_to(@url)
+		username_input = find_element(:name, "username")
+		fill_field(username_input, user())
+		fill_field(find_element(:name, "password"), password())
+		submit_element(username_input)
+		find_element(:class, "_etslc")
+	end
+
 
 end
