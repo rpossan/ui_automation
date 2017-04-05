@@ -6,7 +6,7 @@ defmodule InstagramTest do
 	hound_session()
 
 	test "Should open Instagram web in multiple sessions" do
-		url = "https://www.instagram.com"
+		url = "https://www.instagram.com/"
 		navigate_to(url)
 
 		change_session_to :another
