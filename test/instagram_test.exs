@@ -9,7 +9,7 @@ defmodule InstagramTest do
 		url = "https://www.instagram.com"
 		navigate_to(url)
 
-		change_sessiont_to :another
+		change_session_to :another
 
 		navigate_to(url)
 
