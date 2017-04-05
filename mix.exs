@@ -28,6 +28,10 @@ defmodule UiAutomation.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:hound, "~> 1.0"}]
+    [
+      {:httpoison, "~> 0.5"},
+      {:floki, "~> 0.3"},
+      {:hound, "~> 1.0"}
+    ]
   end
 end
