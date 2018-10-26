@@ -31,7 +31,8 @@ defmodule UiAutomation.Mixfile do
     [
       {:httpoison, "~> 0.5"},
       {:floki, "~> 0.3"},
-      {:hound, "~> 1.0"}
+      {:hound, "~> 1.0"},
+      {:white_bread, "~> 4.1.1", only: [:dev, :test] },
     ]
   end
 end
