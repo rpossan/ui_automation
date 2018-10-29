@@ -6,6 +6,10 @@ Feature: Casts Basics
     And I click on "Inscrever-se"
     And I fill field "Email" with random value "test@example.com"
     And I fill field "Senha" with random value "Test@123456"
-    And I fill field "Confirmação de Senha" with value "Test@123456"
-    And I fill field "Nome" with random value "Nome"
-    And I fill field "Sobrenome" with random value "Sobrenome"
+    And I fill field "Confirmacao de Senha" with value "Test@123456"
+    And I fill field "Nome*" with random value "Ronaldo"
+    And I fill field "Sobrenome" with random value "Possan"
+    And I click on "Inscrever-se" to submit
+    And I click on "bla"
+    
+

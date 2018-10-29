@@ -24,7 +24,7 @@ defmodule StepsDefinition do
 
   and_ ~r/^I fill field "(?<field>[^"]+)" with value "(?<value>[^"]+)"$/,
   fn state, %{field: _field, value: _value} ->
-    Commons.fill_input(_field, _value)
+    Commons.fill_input(_field, _value, false)
     {:ok, state}
   end
 

@@ -6,6 +6,13 @@ defmodule Commons do
     navigate_to url
   end
 
+  # Click on submit input
+  def click_on(text) do
+    xpath =
+    el = find_element(:xpath, xpath)
+    el |> click()
+  end
+
   # Click on element by the text
   def click_on(text) do
     el = find_element(:link_text, text)
@@ -14,8 +21,13 @@ defmodule Commons do
 
   #Generic function to fill inputs
   def fill_input(field, value, rnd) do
-    now = NaiveDateTime.utc_now
-    value = if rnd, do: "#{value}#{now.hour}#{now.minute}"
+    value =
+      if rnd do
+        now = NaiveDateTime.utc_now
+        "#{value}#{now.hour}#{now.minute}"
+      else
+        value
+      end
     xpath = "//input[@placeholder='#{field}']"
     el = find_element(:xpath, xpath)
     fill_field(el, value)
