@@ -7,8 +7,14 @@ defmodule StepsDefinition do
   use ExUnit.Case
   require Commons
   require RegisterPage
+  use Hound.Helpers
 
   Hound.start_session
+
+  and_ ~r/^I go to the Register Page$/, fn state ->
+    RegisterPage.visit
+    {:ok, state}
+  end
 
   given_ ~r/^I navigate to "(?<url>[^"]+)"$/,
   fn state, %{url: _url} ->
@@ -16,9 +22,21 @@ defmodule StepsDefinition do
     {:ok, state}
   end
 
+  and_ ~r/^I click on "(?<text>[^"]+)" to submit$/,
+  fn state, %{text: _text} ->
+    RegisterPage.submit
+    {:ok, state}
+  end
+
   and_ ~r/^I click on "(?<text>[^"]+)"$/,
   fn state, %{text: _text} ->
     Commons.click_on _text
+    {:ok, state}
+  end
+
+  and_ ~r/^I fill field Nome with value "(?<value>[^"]+)"$/,
+  fn state, %{value: _value} ->
+    fill_field(RegisterPage.name, _value)
     {:ok, state}
   end
 

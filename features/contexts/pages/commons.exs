@@ -1,14 +1,16 @@
 defmodule Commons do
   use Hound.Helpers
 
+  def host, do: "http://localhost:3000"
+
   # Navigate to any URL
   def visit(url) do
     navigate_to url
   end
 
   # Click on submit input
-  def click_on(text) do
-    xpath =
+  def click_on_submit(text) do
+    xpath = "//input[@type='submit' and @value='Inscrever-se']"
     el = find_element(:xpath, xpath)
     el |> click()
   end

@@ -29,3 +29,5 @@ use Mix.Config
 #
 #     import_config "#{Mix.env}.exs"
 config :hound, driver: "chrome_driver"
+# browser: "chrome_headless"
+# retry_time: 500
