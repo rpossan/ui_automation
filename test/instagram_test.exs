@@ -1,7 +1,8 @@
 defmodule InstagramTest do
 
-  use ExUnit.Case
   use Hound.Helpers
+  use ExUnit.Case
+  ExUnit.start()
 
   hound_session()
 

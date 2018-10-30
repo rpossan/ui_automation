@@ -17,38 +17,50 @@ defmodule StepsDefinition do
   end
 
   given_ ~r/^I navigate to "(?<url>[^"]+)"$/,
-  fn state, %{url: _url} ->
-    Commons.visit _url
+  fn state, %{url: url} ->
+    Commons.visit url
     {:ok, state}
   end
 
-  and_ ~r/^I click on "(?<text>[^"]+)" to submit$/,
-  fn state, %{text: _text} ->
+  and_ ~r/^I submit form$/, fn state ->
     RegisterPage.submit
     {:ok, state}
   end
 
+  and_ ~r/^I click on "(?<text>[^"]+)" to submit$/,
+  fn state, %{text: text} ->
+    Commons.click_on_submit text
+    {:ok, state}
+  end
+
   and_ ~r/^I click on "(?<text>[^"]+)"$/,
-  fn state, %{text: _text} ->
-    Commons.click_on _text
+  fn state, %{text: text} ->
+    Commons.click_on text
     {:ok, state}
   end
 
   and_ ~r/^I fill field Nome with value "(?<value>[^"]+)"$/,
-  fn state, %{value: _value} ->
-    fill_field(RegisterPage.name, _value)
+  fn state, %{value: value} ->
+    fill_field(RegisterPage.name, value)
     {:ok, state}
   end
 
   and_ ~r/^I fill field "(?<field>[^"]+)" with value "(?<value>[^"]+)"$/,
-  fn state, %{field: _field, value: _value} ->
-    Commons.fill_input(_field, _value, false)
+  fn state, %{field: field, value: value} ->
+    field = field
+    value = value
+    Commons.fill_input(field, value, false)
     {:ok, state}
   end
 
   and_ ~r/^I fill field "(?<field>[^"]+)" with random value "(?<value>[^"]+)"$/,
-  fn state, %{field: _field, value: _value} ->
-    Commons.fill_input(_field, _value, true)
+  fn state, %{field: field, value: value} ->
+    Commons.fill_input(field, value, true)
+    {:ok, state}
+  end
+
+  then_ ~r/^I got registration successfully$/, fn state ->
+    RegisterPage.check_successfully
     {:ok, state}
   end
 

@@ -1,6 +1,8 @@
-
+{:ok, _} = Application.ensure_all_started(:hound)
+ExUnit.start()
 defmodule RegisterPage do
   use Hound.Helpers
+  use ExUnit.Case
 
   @url "/users/sign_up"
 
@@ -31,7 +33,9 @@ defmodule RegisterPage do
 
   def last_name, do: get_input "Sobrenome"
 
-  def check_successfully_registration do
+  def check_successfully do
+    confirmation_message = "Bem vindo! Você realizou seu registro com sucesso."
+    assert page_source() =~ confirmation_message
 
   end
 

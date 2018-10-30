@@ -10,7 +10,7 @@ defmodule Commons do
 
   # Click on submit input
   def click_on_submit(text) do
-    xpath = "//input[@type='submit' and @value='Inscrever-se']"
+    xpath = "//input[@type='submit' and @value='#{text}']"
     el = find_element(:xpath, xpath)
     el |> click()
   end
