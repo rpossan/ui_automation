@@ -12,6 +12,5 @@ Feature: Casts Basics
     And I fill field "Nome*" with random value "Ronaldo"
     And I fill field "Sobrenome" with random value "Possan"
     And I submit form
-    Then I got registration successfully
-    
-
+    And I got registration successfully
+    Then I take a screenshot

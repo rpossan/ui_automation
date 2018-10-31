@@ -11,6 +11,11 @@ defmodule StepsDefinition do
 
   Hound.start_session
 
+  and_ ~r/^I do logoff$/, fn state ->
+    RegisterPage.logoff
+    {:ok, state}
+  end
+
   and_ ~r/^I go to the Register Page$/, fn state ->
     RegisterPage.visit
     {:ok, state}
@@ -47,8 +52,6 @@ defmodule StepsDefinition do
 
   and_ ~r/^I fill field "(?<field>[^"]+)" with value "(?<value>[^"]+)"$/,
   fn state, %{field: field, value: value} ->
-    field = field
-    value = value
     Commons.fill_input(field, value, false)
     {:ok, state}
   end
@@ -59,8 +62,14 @@ defmodule StepsDefinition do
     {:ok, state}
   end
 
-  then_ ~r/^I got registration successfully$/, fn state ->
+  and_ ~r/^I got registration successfully$/, fn state ->
     RegisterPage.check_successfully
+    {:ok, state}
+  end
+
+  then_ ~r/^I take a screenshot$/, fn state ->
+    take_screenshot("evidencia.png")
+    delete_cookies()
     {:ok, state}
   end
 

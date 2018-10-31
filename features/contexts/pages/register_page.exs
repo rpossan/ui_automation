@@ -6,6 +6,12 @@ defmodule RegisterPage do
 
   @url "/users/sign_up"
 
+  def logoff do
+    xpath = "//a[@class='bt-logout']"
+    el = find_element(:xpath, xpath)
+    el |> click()
+  end
+
   def visit do
     navigate_to "#{Commons.host}#{@url}"
   end
@@ -27,8 +33,6 @@ defmodule RegisterPage do
 
   def confirm_password, do: get_input "Confirmacao de Senha"
 
-  def senha, do: get_input "Senha"
-
   def name, do: get_input("Nome*")
 
   def last_name, do: get_input "Sobrenome"
@@ -36,7 +40,6 @@ defmodule RegisterPage do
   def check_successfully do
     confirmation_message = "Bem vindo! Você realizou seu registro com sucesso."
     assert page_source() =~ confirmation_message
-
   end
 
 end

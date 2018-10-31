@@ -3,30 +3,30 @@ defmodule Commons do
 
   def host, do: "http://localhost:3000"
 
-  # Navigate to any URL
+  # Generic function to navigate to any URL
   def visit(url) do
     navigate_to url
   end
 
-  # Click on submit input
+  # Generic function to click on submit input
   def click_on_submit(text) do
     xpath = "//input[@type='submit' and @value='#{text}']"
     el = find_element(:xpath, xpath)
     el |> click()
   end
 
-  # Click on element by the text
+  # Generic click on element by the text
   def click_on(text) do
     el = find_element(:link_text, text)
     el |> click()
   end
 
-  #Generic function to fill inputs
+  # Generic function to fill inputs
   def fill_input(field, value, rnd) do
     value =
       if rnd do
         now = NaiveDateTime.utc_now
-        "#{value}#{now.hour}#{now.minute}"
+        "#{value}#{now.hour}#{now.minute}#{now.second}"
       else
         value
       end
